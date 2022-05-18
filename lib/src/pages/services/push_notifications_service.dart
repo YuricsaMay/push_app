@@ -20,6 +20,7 @@ class PushNotificationService{
 
 static Future initializeApp()async{
 //push notifications
+
 await Firebase.initializeApp();
 token = await FirebaseMessaging.instance.getToken();
 print('Token: $token');
