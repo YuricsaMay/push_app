@@ -14,18 +14,27 @@ class PushNotificationService{
 
   static Future _backgroundHandler(RemoteMessage message)async{
     //print('onBackground Handler ${message.messageId }');
-  print(message.data);
-  _messageStream.add(message.notification!.title?? 'No title');
+  
+  final argumento = message.data['comida'] ?? 'no-data';
+    _messageStream.sink.add(argumento);
+  //print(message.data);
+  //_messageStream.add(message.notification!.title?? 'No title');
   }
   static Future _onMessageHandler(RemoteMessage message)async{
     //print('onMessage Handler ${message.messageId }');
-   print(message.data);
-    _messageStream.add(message.notification!.title?? 'No title');
+   
+   final argumento = message.data['comida'] ?? 'no-data';
+    _messageStream.sink.add(argumento);
+   //print(message.data);
+    //_messageStream.add(message.notification!.title?? 'No title');
   }
   static Future _onMessageOpenApp(RemoteMessage message)async{
    // print('onMessageOpenApp Handler ${message.messageId }');
-     print(message.data);
-      _messageStream.add(message.notification!.title?? 'No title');
+     
+     final argumento = message.data['comida'] ?? 'no-data';
+    _messageStream.sink.add(argumento);
+    // print(message.data);
+     // _messageStream.add(message.notification!.title?? 'No title');
   }
 
 static Future initializeApp()async{
@@ -44,3 +53,21 @@ static closeStreams(){
   _messageStream.close();
 }
 }
+
+/*
+Para POSTMAN
+{
+   "notification": {
+         "body": "Presiona para entrar",
+         "title": "Esta es una notification desde Postman"
+       },
+       "priority": "high",
+       "data": {
+         "click_action": "FLUTTER_NOTIFICATION_CLICK",
+         "id": "1",
+         "status": "done",
+         "comida": "Pizza"
+       },
+       "to": "fwsmDLV0Tu-hNWQG4fLnb9:APA91bG-iBWlNafZdxs403tPoJ3L4UuuXoRcu426OlmiJmA-iSyPlYd8qsWwV3Ttr0jc_tyl6nSz3C_QPzdoiPu2xBVDV-GPJv2zJPVRbGThvQL9rdfU38kgX60r7c_tc6Hllj5sJ3uL"
+}
+*/
